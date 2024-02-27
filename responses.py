@@ -1,5 +1,8 @@
+import aiohttp  # vajalik hilisemaks
+
+
 # Funktsioon, mis hakkab kasutajate sõnumeid käsitlema
-def handle_response(message) -> str:
+async def handle_response(message) -> str:
     # Teeme iga sõnumi väiketäheliseks, et endal oleks kergem
     message = message.lower()
 
