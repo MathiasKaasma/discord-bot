@@ -1,11 +1,21 @@
 import discord  # discord.py package
-import responses  # Kõrvalfail, mida muutma hakkame
+import aiohttp  # vajalik hilisemaks
 
 
-# Sõnumi saatmine kasutajale
+# Funktsioon, mis hakkab kasutajate sõnumeid käsitlema
+async def handle_response(message) -> str:
+    # Teeme iga sõnumi väiketäheliseks, et endal oleks kergem
+    message = message.lower()
+
+    # Kui sõnum oli !abi, saadame kasutajale vastuse
+    if message == "abi":
+        return "Vastus, mille bot discordi saadab"
+
+
+# Sõnumi saatmine kasutajale (siin ei pea midagi muutma)
 async def send_message(message, user_message):
     try:
-        response = await responses.handle_response(user_message)
+        response = await handle_response(user_message)
         await message.channel.send(response)
     except Exception as e:
         print(e)
